@@ -1,9 +1,9 @@
-/* eslint-disable indent */
+
 /* eslint-disable no-console */
 import client from '../lib/client.js';
 // import our seed data:
 import users from './users.js';
-import todos from './todo.js';
+import todos from './todos.js';
 
 run();
 
@@ -17,20 +17,18 @@ async function run() {
           INSERT INTO users (name, email, hash)
           VALUES ($1, $2, $3)
           RETURNING *;
-        `,
-          [user.name, user.email, user.password]);
+        `, [user.name, user.email, user.password]);
       })
     );
 
-    const user = data[0].rows[0];
+    const user = data.rows[0];
 
     await Promise.all(
       todos.map(todo => {
         return client.query(`
         INSERT INTO todo (task, completed, user_id)
         VALUES ($1, $2, $3)
-        `,
-          [todo.task, todo.completed, user.id]);
+        `, [todo.task, todo.completed, user.id]);
       })
     );
 
