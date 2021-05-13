@@ -17,7 +17,7 @@ async function run() {
         hash VARCHAR(512) NOT NULL
       );
     
-      CREATE TABLE todo (
+      CREATE TABLE todos (
         id SERIAL PRIMARY KEY NOT NULL,
         task VARCHAR(512) NOT NULL,
         completed BOOLEAN DEFAULT FALSE NOT NULL,
