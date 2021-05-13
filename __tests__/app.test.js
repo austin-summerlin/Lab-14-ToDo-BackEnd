@@ -11,7 +11,7 @@ describe('API Routes', () => {
     return client.end();
   });
 
-  describe('/api/cats', () => {
+  describe('/api/todos', () => {
     let user;
 
     beforeAll(async () => {
@@ -32,15 +32,15 @@ describe('API Routes', () => {
 
     // append the token to your requests:
     //  .set('Authorization', user.token);
-    
+
     it('VERB to /api/route [with context]', async () => {
-      
+
       // remove this line, here to not have lint error:
       user.token;
-    
+
       // expect(response.status).toBe(200);
       // expect(response.body).toEqual(?);
-      
+
     });
 
   });
