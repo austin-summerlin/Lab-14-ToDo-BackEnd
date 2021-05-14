@@ -30,7 +30,7 @@ describe('API Routes', () => {
       user = response.body;
       console.log(user);
     });
-    
+
     let chore = {
       id: expect.any(Number),
       task: 'Feed Cat',
