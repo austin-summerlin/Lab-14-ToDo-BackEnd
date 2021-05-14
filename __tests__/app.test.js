@@ -73,6 +73,7 @@ describe('API Routes', () => {
         userId: user.id,
         ...chore
       });
+      chore = response.body;
     });
 
     it('DELETE chore from /api/todos/:id', async () => {
@@ -91,8 +92,16 @@ describe('API Routes', () => {
         .set('Authorization', user.token);
       expect(response.status).toBe(200);
       expect(response.body).toEqual(newTodo);
-      
+    });
 
+    it('UPDATE/PUT chore from /api/todos/:id', async () => {
+      chore.completed = true;
+      const response = await request
+        .put(`/api/todos/${chore.id}/completed`)
+        .set('Authorization', user.token)
+        .send(chore);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(chore);
     });
 
   });
