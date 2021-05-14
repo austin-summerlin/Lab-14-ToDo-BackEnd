@@ -39,7 +39,7 @@ describe('API Routes', () => {
     // append the token to your requests:
     //  .set('Authorization', user.token);
 
-    it.only('GET my /api/person/todos', async () => {
+    it.only('GET my /api/me/todos', async () => {
 
       const getTodoResponse = await request
         .post('/api/todos')
@@ -52,7 +52,7 @@ describe('API Routes', () => {
       expect(getTodoResponse.status).toBe(200);
       const chore = getTodoResponse.body;
 
-      const response = await request.get('/api/person/todos')
+      const response = await request.get('/api/me/todos')
         .set('Authorization', user.token);
 
 
