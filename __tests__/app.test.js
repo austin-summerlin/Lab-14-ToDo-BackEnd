@@ -28,8 +28,9 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
 
       user = response.body;
+      console.log(user);
     });
-
+    
     let chore = {
       id: expect.any(Number),
       task: 'Feed Cat',
@@ -72,6 +73,26 @@ describe('API Routes', () => {
         userId: user.id,
         ...chore
       });
+    });
+
+    it('DELETE chore from /api/todos/:id', async () => {
+      const newTodoResponse = await request
+        .post('/api/todos')
+        .set('Authorization', user.token)
+        .send({
+          task: 'Feed Cat',
+          completed: true,
+          userId: user.id
+        });
+
+      const newTodo = newTodoResponse.body;
+
+      const response = await request.delete(`/api/todos/${newTodo.id}`)
+        .set('Authorization', user.token);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(newTodo);
+      
+
     });
 
   });
